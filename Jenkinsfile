@@ -1,7 +1,7 @@
 pipeline {
     agent any
     environment {
-        DOCKER_CREDENTIAL_ID = 'Docker2'
+        DOCKER_CREDENTIAL_ID = 'Docker5'
         IMAGE_NAME = 'sagar1234567/sagar'
     }
     stages {
