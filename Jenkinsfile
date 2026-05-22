@@ -2,7 +2,7 @@ pipeline {
     agent any
     environment {
         DOCKER_CREDENTIAL_ID = 'Docker2'
-     IMAGE_NAME = 'sagar1234567/docker_image'
+     IMAGE_NAME = 'sagar1234567/sagar'
     }
     stages {
         stage('Build Java Application') {
