@@ -17,7 +17,7 @@ pipeline {
         }
         stage('Build Docker Image') {
             steps {
-                bat "docker build -t ${env.IMAGE_NAME}:latest ."
+                bat "docker build -t ${env.IMAGE_NAME} ."
             }
         }
         stage('Login to DockerHub') {
@@ -33,7 +33,7 @@ pipeline {
         }
         stage('Push Docker Image') {
             steps {
-                bat "docker push ${env.IMAGE_NAME}:latest"
+                bat "docker push ${env.IMAGE_NAME}"
             }
         }
     }
