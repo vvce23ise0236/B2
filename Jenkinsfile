@@ -1,31 +1,25 @@
 pipeline {
     agent any
-
     environment {
         DOCKER_CREDENTIAL_ID = 'Docker'
-        IMAGE_NAME = 'sagar1234567/docker_image'
+     IMAGE_NAME = 'sagar1234567/docker_image'
     }
-
     stages {
-
         stage('Build Java Application') {
             steps {
                 bat 'javac HelloWorld.java'
             }
         }
-
         stage('Run Java Program') {
             steps {
                 bat 'java HelloWorld'
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 bat "docker build -t ${env.IMAGE_NAME}:latest ."
             }
         }
-
         stage('Login to DockerHub') {
             steps {
                 withCredentials([usernamePassword(
@@ -33,22 +27,19 @@ pipeline {
                     usernameVariable: 'USER',
                     passwordVariable: 'PASS'
                 )]) {
-
                     bat "docker login -u %USER% -p %PASS%"
                 }
             }
         }
-
         stage('Push Docker Image') {
             steps {
                 bat "docker push ${env.IMAGE_NAME}:latest"
             }
         }
     }
-
     post {
-        always {
-            bat 'docker logout'
+     always {
+        bat 'docker logout'
         }
     }
 }
